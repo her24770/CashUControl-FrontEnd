@@ -27,21 +27,21 @@ const navigation = [
   //   href: "/home/cards",
   //   icon: "bi bi-card-text",
   // },
-   {
-     title: "Grid",
-     href: "/home/grid",
-     icon: "bi bi-columns",
-   },
+  //  {
+  //    title: "Grid",
+  //    href: "/home/grid",
+  //    icon: "bi bi-columns",
+  //  },
   // {
   //   title: "Table",
   //   href: "/home/table",
   //   icon: "bi bi-layout-split",
   // },
-   {
-     title: "Forms",
-     href: "/home/forms",
-     icon: "bi bi-textarea-resize",
-   },
+  //  {
+  //    title: "Forms",
+  //    href: "/home/forms",
+  //    icon: "bi bi-textarea-resize",
+  //  },
   // {
   //   title: "Breadcrumbs",
   //   href: "/home/breadcrumbs",

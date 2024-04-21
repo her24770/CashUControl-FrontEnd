@@ -74,7 +74,7 @@ const Starter = () => {
         e.preventDefault();
         try {
             console.log(user)
-            if(document.getElementById('surname') || document.getElementById('carnet') || document.getElementById('name')===''){
+            if(user.name===""||user.surname===""||user.carnet===""){
                 Swal.fire({
                     title: "No puede dejar espacio vacios",
                     icon: 'warning',
