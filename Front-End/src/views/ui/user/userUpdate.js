@@ -172,8 +172,8 @@ const Starter = () => {
                                         name="carnet"
                                         placeholder="No. carnet"
                                         defaultValue={user.carnet}
-
                                         type='number'
+                                        min='0'
                                         required
                                     />
                                 </FormGroup>
