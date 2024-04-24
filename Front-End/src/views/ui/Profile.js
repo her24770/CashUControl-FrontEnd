@@ -17,13 +17,19 @@ const Starter = () => {
     const id = localStorage.getItem('id');
     const [user, setUser] = useState({});
 
+    const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
+
     const getUser = async () => {
         try {
-          const {data} = await axios.get(`http://localhost:5000/users/getProfile/${id}`);
+          const {data} = await axios.get(`http://localhost:5000/users/getProfile/${id}`,config);
           console.log(data);
           setUser(data)
         } catch (error) {
-          console.error(error);
+          console.error(error); 
         }
       };
     
