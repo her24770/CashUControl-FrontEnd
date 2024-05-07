@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState} from 'react';
 import axios from 'axios';
 import { Col, Row } from "reactstrap";
 import {
@@ -12,14 +12,15 @@ import {
   } from "reactstrap";
 import user1 from "../../assets/images/users/user4.jpg"
 
-const Starter = () => {
+const Profile = () => {
     const token = localStorage.getItem('token');
     const id = localStorage.getItem('id');
     const [user, setUser] = useState({});
 
     const config = {
         headers: {
-          Authorization: `Bearer ${token}`
+          'Authorization': 'Bearer '+ token,
+          'Content-Type': 'application/json'
         }
       };
 
@@ -27,6 +28,7 @@ const Starter = () => {
         try {
           const {data} = await axios.get(`http://localhost:5000/users/getProfile/${id}`,config);
           console.log(data);
+          console.log(token)
           setUser(data)
         } catch (error) {
           console.error(error); 
@@ -34,7 +36,7 @@ const Starter = () => {
       };
     
       useEffect(() => {
-        getUser(); // Llamar a fetchData dentro de useEffect
+        getUser();
       }, []);
 
     return (
@@ -80,4 +82,4 @@ const Starter = () => {
     );
 };
 
-export default Starter;
+export default Profile;

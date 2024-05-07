@@ -20,7 +20,7 @@ import {
     FormText
 } from "reactstrap";
 
-const Starter = () => {
+const UserUpdate = () => {
     const token = localStorage.getItem('token');
     const id = localStorage.getItem('id');
     const navigate = useNavigate()
@@ -230,4 +230,4 @@ const Starter = () => {
     );
 };
 
-export default Starter;
+export default UserUpdate;

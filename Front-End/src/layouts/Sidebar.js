@@ -7,51 +7,71 @@ const navigation = [
     href: "/home/starter",
     icon: "bi bi-speedometer2",
   },
-  // {
-  //   title: "Alert",
-  //   href: "/home/alerts",
-  //   icon: "bi bi-bell",
-  // },
-  // {
-  //   title: "Badges",
-  //   href: "/home/badges",
-  //   icon: "bi bi-patch-check",
-  // },
-  // {
-  //   title: "Buttons",
-  //   href: "/home/buttons",
-  //   icon: "bi bi-hdd-stack",
-  // },
-  // {
-  //   title: "Cards",
-  //   href: "/home/cards",
-  //   icon: "bi bi-card-text",
-  // },
-  //  {
-  //    title: "Grid",
-  //    href: "/home/grid",
-  //    icon: "bi bi-columns",
-  //  },
-  // {
-  //   title: "Table",
-  //   href: "/home/table",
-  //   icon: "bi bi-layout-split",
-  // },
-  //  {
-  //    title: "Forms",
-  //    href: "/home/forms",
-  //    icon: "bi bi-textarea-resize",
-  //  },
-  // {
-  //   title: "Breadcrumbs",
-  //   href: "/home/breadcrumbs",
-  //   icon: "bi bi-link",
-  // },
-  // {
-  //   title: "About",
-  //   href: "/home/about",
-  //   icon: "bi bi-people",
-  // },
+  {
+    title:"Finanzas",
+    href:"/home/historyFinances",
+    icon:"bi bi-cash-coin"
+  },
+  {
+    title:"Recompensas",
+    href:"/home/recompensas",
+    icon:"bi bi-cash-coin"
+  },
+  {
+    title:"Metas",
+    href:"/home/metas",
+    icon:"bi bi-cash-coin"
+  },
+  {
+    title:"Consejos",
+    href:"/home/consejos",
+    icon:"bi bi-cash-coin"
+  },
+  {
+    title: "Alert",
+    href: "/home/alerts",
+    icon: "bi bi-bell",
+  },
+  {
+    title: "Badges",
+    href: "/home/badges",
+    icon: "bi bi-patch-check",
+  },
+  {
+    title: "Buttons",
+    href: "/home/buttons",
+    icon: "bi bi-hdd-stack",
+  },
+  {
+    title: "Cards",
+    href: "/home/cards",
+    icon: "bi bi-card-text",
+  },
+   {
+     title: "Grid",
+     href: "/home/grid",
+     icon: "bi bi-columns",
+   },
+  {
+    title: "Table",
+    href: "/home/table",
+    icon: "bi bi-layout-split",
+  },
+   {
+     title: "Forms",
+     href: "/home/forms",
+     icon: "bi bi-textarea-resize",
+   },
+  {
+    title: "Breadcrumbs",
+    href: "/home/breadcrumbs",
+    icon: "bi bi-link",
+  },
+  {
+    title: "About",
+    href: "/home/about",
+    icon: "bi bi-people",
+  },
 ];
 
 const Sidebar = () => {
