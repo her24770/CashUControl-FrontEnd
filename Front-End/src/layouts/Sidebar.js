@@ -15,17 +15,17 @@ const navigation = [
   {
     title:"Recompensas",
     href:"/home/recompensas",
-    icon:"bi bi-cash-coin"
+    icon:"bi bi-bookmark-fill"
   },
   {
     title:"Metas",
     href:"/home/metas",
-    icon:"bi bi-cash-coin"
+    icon:"bi bi-card-checklist"
   },
   {
     title:"Consejos",
     href:"/home/consejos",
-    icon:"bi bi-cash-coin"
+    icon:"bi bi-chat-square-text-fill"
   },
   {
     title: "Alert",
