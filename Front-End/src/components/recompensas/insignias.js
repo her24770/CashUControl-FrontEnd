@@ -1,4 +1,8 @@
 const Insignias = () => {
+
+
+
+    
     return (
         <>LIsta de insignias</>
     );

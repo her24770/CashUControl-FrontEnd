@@ -17,6 +17,7 @@ const Grid = lazy(() => import("../views/ui/Grid"));
 const Tables = lazy(() => import("../views/ui/Tables"));
 const Forms = lazy(() => import("../views/ui/Forms"));
 const Breadcrumbs = lazy(() => import("../views/ui/Breadcrumbs"));
+const Users = lazy(()=> import("../components/user/users.js"))
 const ProfileUser = lazy(() => import("../components/user/profile.js"));
 const UpdateUser = lazy(() => import("../components/user/userUpdate.js"));
 const HistoryFinances = lazy(()=>import("../components/finance/historyFinances.js"))
@@ -43,6 +44,7 @@ const ThemeRoutes = [
       { path: "", element: <Navigate to="starter" /> },
       { path: "starter", element: <Starter /> },
       { path: "profile",element:<ProfileUser/>},
+      { path: "users", element:<Users/>},
       { path: "updateUser",element:<UpdateUser/>},
       { path: "historyFinances",element:<HistoryFinances/>},
       { path: "addIngreso", element:<AddIngreso/>},

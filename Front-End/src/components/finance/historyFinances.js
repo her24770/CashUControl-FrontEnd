@@ -12,12 +12,22 @@ moment.locale('es');
 const Tables = () => {
     const id = localStorage.getItem('id');
     const [ingresos, setIngresos] = useState([]);
+    const [egresos, setEgresos] = useState([]);
 
     //funcion listar ingresos
     const getIngresos = async () => {
         try {
             const { data } = await axios.get(`http://localhost:5000/ingresos/listIdUser/${id}`);
             setIngresos(data)
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    //funcion listar egrsos
+    const getEgresos = async () => {
+        try {
+            const { data } = await axios.get(`http://localhost:5000/egresos/searchByUser/${id}`);
+            setEgresos(data)
         } catch (error) {
             console.error(error);
         }
@@ -40,6 +50,7 @@ const Tables = () => {
 
     useEffect(() => {
         getIngresos();
+        getEgresos();
     }, []);
 
     return (
@@ -77,7 +88,7 @@ const Tables = () => {
                                     return (
                                         <tr key={index} className="border-top">
                                             <td>{tdata.descripcion}</td>
-                                            <td>{tdata.monto}</td>
+                                            <td>Q {tdata.monto}.00</td>
                                             <td>
                                                 <div className="d-flex align-items-center p-2">
                                                     <div className="ms-3">
@@ -96,7 +107,49 @@ const Tables = () => {
             </Col>
             <Col lg="6">
                 <Card>
-                    Egresos
+                <CardBody>
+                        <Button tag={Link} to="/home/addEgreso" className="btn" color="primary" size="lg">
+                            <i class="bi bi-plus-circle-fill me-3"></i>
+                            Nuevo Egreso
+                        </Button>
+                        <hr></hr>
+                        <CardTitle tag="h5">Egreso</CardTitle>
+                        <CardSubtitle className="mb-2 text-muted" tag="h6">
+                            Historial
+                        </CardSubtitle>
+
+                        <Table className="no-wrap mt-3 align-middle" responsive borderless>
+                            <thead>
+                                <tr>
+                                    <th>Descripción</th>
+                                    <th>Monto</th>
+                                    <th>Fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {egresos.slice().reverse().map((tdata, index) => {
+                                    const date = new Date(tdata.date.$date);
+                                    const formattedDate = formatFecha(date);
+                                    const formattedHora = formatHora(date)
+
+                                    return (
+                                        <tr key={index} className="border-top">
+                                            <td>{tdata.descripcion}</td>
+                                            <td>Q {tdata.monto}.00</td>
+                                            <td>
+                                                <div className="d-flex align-items-center p-2">
+                                                    <div className="ms-3">
+                                                        <h6 className="mb-0">{formattedDate}</h6>
+                                                        <span className="text-muted">{formattedHora}</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </Table>
+                    </CardBody>
                 </Card>
             </Col>
         </Row>

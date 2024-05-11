@@ -8,6 +8,11 @@ const navigation = [
     icon: "bi bi-speedometer2",
   },
   {
+    title: "Usuarios",
+    href: "/home/users",
+    icon: "bi bi-people-fill",
+  },
+  {
     title:"Finanzas",
     href:"/home/historyFinances",
     icon:"bi bi-cash-coin"
@@ -15,7 +20,7 @@ const navigation = [
   {
     title:"Recompensas",
     href:"/home/recompensas",
-    icon:"bi bi-bookmark-fill"
+    icon:"bi bi-bookmark-star"
   },
   {
     title:"Metas",
@@ -71,7 +76,7 @@ const navigation = [
     title: "About",
     href: "/home/about",
     icon: "bi bi-people",
-  },
+  }
 ];
 
 const Sidebar = () => {
