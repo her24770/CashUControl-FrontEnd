@@ -24,6 +24,7 @@ const HistoryFinances = lazy(()=>import("../components/finance/historyFinances.j
 const AddIngreso = lazy(()=>import("../components/finance/addIngreso.js"))
 const AddEgreso = lazy(()=>import("../components/finance/addEgreso.js"))
 const Recompensas = lazy(()=>import("../components/recompensas/insignias.js"))
+const AddRecompensa = lazy(()=>import("../components/recompensas/addInsignias.js"))
 const AddMeta = lazy(()=>import("../components/metas/addMeta.js"))
 const Metas = lazy(()=>import("../components/metas/metas.js"))
 const UpdateMeta = lazy(()=>import("../components/metas/updateMeta.js"))
@@ -50,6 +51,7 @@ const ThemeRoutes = [
       { path: "addIngreso", element:<AddIngreso/>},
       { path: "addEgreso", element:<AddEgreso/>},
       { path: "recompensas", element:<Recompensas/>},
+      { path: "addInsignias", element:<AddRecompensa/>},
       { path: "addMeta", element:<AddMeta/>},
       { path: "metas", element:<Metas/>},
       { path: "updateMeta", element:<UpdateMeta/>},
