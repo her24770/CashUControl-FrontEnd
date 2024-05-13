@@ -3,15 +3,29 @@ import axios from 'axios';
 import { Col, Row } from "reactstrap";
 import { Card, CardBody, CardTitle, ListGroup, CardSubtitle, ListGroupItem, Button } from "reactstrap";
 import user1 from "../../assets/images/users/user4.jpg";
-import imageI1 from "../../assets/images/insignias/insi1.jpeg"
-import imageI2 from "../../assets/images/insignias/insi2.jpeg"
-import imageI3 from "../../assets/images/insignias/insi3.jpeg"
+import AhorradorﾠIncansable from "../../assets/images/insignias/AhorradorIncansable.png"
+import ÁngelﾠdeﾠlaﾠAsistencia from "../../assets/images/insignias/ÁngeldelaAsistencia.png"
+import CapitánﾠdeﾠControlﾠFinanciero from "../../assets/images/insignias/CapitándelControFinanciero.png"
+import EspecialistaﾠenﾠInversiones from "../../assets/images/insignias/EspecialistaenInversiones.png"
+import EstrellaﾠdelﾠAhorro from "../../assets/images/insignias/EstrelladelAhorro.png"
+import EliminaciónﾠdeﾠDeudas from "../../assets/images/insignias/Expertoen EliminacióndeDeudas.png"
+import GenioﾠdelﾠGasto from "../../assets/images/insignias/GeniodelGasto.png"
+import GuardiánﾠdelﾠTesoro from "../../assets/images/insignias/GuardiándeTesoro.png"
+import MaestroﾠdeﾠlaﾠModeración from "../../assets/images/insignias/MaestrodelaModeración.png"
+import MaestroﾠdelﾠMonitoreo from "../../assets/images/insignias/MaestrodelMonitoreo.png"
+import MásterﾠdeﾠMetas from "../../assets/images/insignias/MásterdeMetas.png"
+import NinjaﾠdelﾠNegocio from "../../assets/images/insignias/NinjadelNegocio.png"
+import ReyﾠdeﾠlaﾠReducciónﾠdeﾠGastos from "../../assets/images/insignias/ReydelaReduccióndeGastos.png"
+import GuruﾠdelﾠPresupuesto from "../../assets/images/insignias/GurudelPresupuesto.png"
+import HéroeﾠdelﾠHogar from "../../assets/images/insignias/HéroedelHogar.png"
+
 
 const Profile = () => {
   const token = localStorage.getItem('token');
   const id = localStorage.getItem('id');
   const [user, setUser] = useState({});
   const [rewards, setRewards] = useState([]);
+  const [totalPoints, setTotalPoints] = useState(0); // Estado para almacenar los puntos totales del usuario
 
   const config = {
     headers: {
@@ -21,9 +35,21 @@ const Profile = () => {
   };
 
   const images = {
-    imageI1,
-    imageI2,
-    imageI3
+    AhorradorﾠIncansable,
+    ÁngelﾠdeﾠlaﾠAsistencia,
+    CapitánﾠdeﾠControlﾠFinanciero,
+    EspecialistaﾠenﾠInversiones,
+    EstrellaﾠdelﾠAhorro,
+    EliminaciónﾠdeﾠDeudas,
+    GenioﾠdelﾠGasto,
+    GuardiánﾠdelﾠTesoro,
+    MaestroﾠdeﾠlaﾠModeración,
+    MaestroﾠdelﾠMonitoreo,
+    MásterﾠdeﾠMetas,
+    NinjaﾠdelﾠNegocio,
+    ReyﾠdeﾠlaﾠReducciónﾠdeﾠGastos,
+    GuruﾠdelﾠPresupuesto,
+    HéroeﾠdelﾠHogar
   };
 
   const getUser = async () => {
@@ -34,12 +60,13 @@ const Profile = () => {
       console.error(error);
     }
   };
-
   const getRewards = async () => {
     try {
       const { data } = await axios.get(`http://localhost:5000/recompensas/listare/${id}`, config);
-      console.log(data)
       setRewards(data);
+      // Calcula la suma total de puntos del usuario
+      const total = data.reduce((acc, curr) => acc + curr.puntos, 0);
+      setTotalPoints(total);
     } catch (error) {
       console.error(error);
     }
@@ -52,7 +79,6 @@ const Profile = () => {
 
   return (
     <div>
-      <img src={process.env.PUBLIC_URL + '/assets/images/users/user4.jpg'} alt="Descripción de la imagen" />
       <Row>
         <Col sm="6" lg="6" xl="7" xxl="8">
           <Card>
@@ -89,18 +115,28 @@ const Profile = () => {
             </CardBody>
           </Card>
         </Col>
-        <Col sm="6" lg="6" xl="5" xxl="4">
-          {rewards.map((recompensa, index) => (
-            <Col sm="6" lg="6" xl="3" key={index}>
-              <div>
-                <img src={images[recompensa.descripcion]} alt={recompensa.descripcion} />
-                <p>{recompensa.descripcion}</p>
-              </div>
-            </Col>
-          ))}
-
-        </Col>
+        <Col sm="12"> {/* Utilizando la totalidad del ancho de la columna */}
+  <div className="d-flex flex-wrap">
+    {rewards.map((recompensa, index) => (
+      <div className="mr-3 mb-3" style={{ flex: '0 0 auto', marginRight: '10px', marginBottom: '10px' }} key={index}>
+        <div className="card" style={{ width: '18rem' }}>
+          <img src={images[recompensa.descripcion]} alt={recompensa.descripcion} className="card-img-top rounded-circle" width="100%" />
+          <div className="card-body">
+            <p className="card-text">
+              {recompensa.descripcion}<br />
+              <div>Puntos adquiridos: {recompensa.puntos}</div><br />
+              {new Date(recompensa.fecha_otorgamiento).toLocaleString()}
+            </p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</Col>
       </Row>
+      <div style={{ position: 'fixed', bottom: '10px', right: '10px', backgroundColor: 'white', padding: '10px', borderRadius: '5px', boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.3)' }}>
+      <span style={{ fontSize: '1.2rem', fontWeight: 'bold', marginRight: '1.5rem' }}>Puntos Totales:</span> {totalPoints}
+    </div>
     </div>
   );
 };

@@ -64,9 +64,9 @@ const Users = () => {
                                         </td>
                                         <td>
 
-                                            <Button className="btn" color="info">
-                                                Insignias
-                                            </Button>
+                                        {/* <Button tag={Link} to="/home/addInsignias" className="btn" color="primary" size="lg">
+                                            Mis Insignias
+                                         </Button> */}
                                         </td>
                                     </tr>
                                 ))}
