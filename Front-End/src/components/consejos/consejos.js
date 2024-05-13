@@ -3,6 +3,15 @@ import axios from 'axios';
 
 const Consejos = () => {
     const [consejos, setConsejos] = useState([]);
+    const [userId, setUserId] = useState(""); // Suponiendo que este es el id_usuario del usuario autenticado
+
+    useEffect(() => {
+        obtenerConsejos();
+        const userId = localStorage.getItem('id'); // Obtener el id_usuario del usuario autenticado
+        if (userId) {
+            setUserId(userId);
+        }
+    }, []);
 
     const obtenerConsejos = async () => {
         try {
@@ -25,15 +34,9 @@ const Consejos = () => {
         }
     };
 
-    useEffect(() => {
-        obtenerConsejos();
-    }, []);
-
     const handleLike = async (id) => {
         try {
-            console.log(id);
             await axios.post(`http://localhost:5000/consejos/like/${id}`);
-            // Actualizar los consejos después de realizar la acción
             obtenerConsejos();
         } catch (error) {
             console.error('Error al dar like:', error);
@@ -42,36 +45,57 @@ const Consejos = () => {
 
     const handleUnlike = async (id) => {
         try {
-            console.log(id);
             await axios.post(`http://localhost:5000/consejos/unlike/${id}`);
-            // Actualizar los consejos después de realizar la acción
             obtenerConsejos();
         } catch (error) {
             console.error('Error al quitar like:', error.response.data);
         }
     };
 
+    const eliminarConsejo = async (id) => {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('No se encontró el token de autorización.');
+                return;
+            }
+
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            };
+
+            await axios.delete(`http://localhost:5000/consejos/delete/${id}`, config);
+            obtenerConsejos();
+        } catch (error) {
+            console.error('Error al eliminar el consejo:', error);
+        }
+    };
+
     const formatDate = (dateString) => {
         try {
-            // Intenta parsear la cadena de fecha
             const date = new Date(dateString);
             if (isNaN(date.getTime())) {
-                // La cadena de fecha no es válida, devuelve un mensaje de error
-                console.log(date);
                 return 'Fecha inválida';
             }
-            // La cadena de fecha es válida, formatea y devuelve la fecha
             return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
         } catch (error) {
-            // Si hay un error al parsear la fecha, devuelve un mensaje de error
             console.error('Error al parsear la fecha:', error);
             return 'Error de formato de fecha';
         }
-    }
+    };
 
     return (
         <>
-            <h1>Consejos</h1>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <h1>Consejos</h1>
+                <button type="button" className="btn btn-primary">Deja un comentario</button>
+            </div>
+
+
+
+
             <div>
                 {consejos.map((consejo, index) => (
                     <div key={index} className="card">
@@ -79,22 +103,28 @@ const Consejos = () => {
                             <h5 className="card-title">Categoria: {consejo.categoria}</h5>
                             <h6 className="card-subtitle mb-2 text-muted">{formatDate(consejo.fecha)}</h6>
                             <p className="card-text">Descripcion: {consejo.descripcion}</p>
-                            {/* Agrega aquí la lógica para manejar los likes */}
 
                             <div className="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                 <div className="btn-group me-2" role="group" aria-label="First group">
                                     <p>{consejo.likes}</p>
                                 </div>
                                 <div className="btn-group me-2" role="group" aria-label="Second group">
-                                    <button className="btn btn-primary" onClick={() => handleLike(consejo._id)}> 
-                                        <i className="bi bi-hand-thumbs-up-fill"></i>    
+                                    <button className="btn btn-primary" onClick={() => handleLike(consejo._id.$oid)}>
+                                        <i className="bi bi-hand-thumbs-up-fill"></i>
                                     </button>
                                 </div>
-                                <div className="btn-group" role="group" aria-label="Third group">
-                                    <button className="btn btn-danger" onClick={() => handleUnlike(consejo._id)}>
+                                <div className="btn-group me-2" role="group" aria-label="Third group">
+                                    <button className="btn btn-danger" onClick={() => handleUnlike(consejo._id.$oid)}>
                                         <i className="bi bi-hand-thumbs-down-fill"></i>
                                     </button>
                                 </div>
+                                {consejo.id_usuario.$oid === userId && (
+                                    <div className="btn-group me-2" role="group" aria-label="Fourth group">
+                                        <button className="btn btn-danger" onClick={() => eliminarConsejo(consejo._id.$oid)}>
+                                            <i className="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
