@@ -4,6 +4,7 @@ import axios from 'axios';
 const Consejos = () => {
     const [consejos, setConsejos] = useState([]);
     const [userId, setUserId] = useState(""); // Suponiendo que este es el id_usuario del usuario autenticado
+    const [likedConsejos, setLikedConsejos] = useState([]); // Lista de IDs de consejos que el usuario ha dado like
 
     useEffect(() => {
         obtenerConsejos();
@@ -37,7 +38,9 @@ const Consejos = () => {
     const handleLike = async (id) => {
         try {
             await axios.post(`http://localhost:5000/consejos/like/${id}`);
-            obtenerConsejos();
+            obtenerConsejos(); // Recargar los consejos después de dar like
+            // Agregar el ID del consejo a la lista de consejos que el usuario ha dado like
+            setLikedConsejos(prevLikedConsejos => [...prevLikedConsejos, id]);
         } catch (error) {
             console.error('Error al dar like:', error);
         }
@@ -46,7 +49,9 @@ const Consejos = () => {
     const handleUnlike = async (id) => {
         try {
             await axios.post(`http://localhost:5000/consejos/unlike/${id}`);
-            obtenerConsejos();
+            obtenerConsejos(); // Recargar los consejos después de dar dislike
+            // Eliminar el ID del consejo de la lista de consejos que el usuario ha dado like
+            setLikedConsejos(prevLikedConsejos => prevLikedConsejos.filter(consejoId => consejoId !== id));
         } catch (error) {
             console.error('Error al quitar like:', error.response.data);
         }
@@ -67,7 +72,9 @@ const Consejos = () => {
             };
 
             await axios.delete(`http://localhost:5000/consejos/delete/${id}`, config);
-            obtenerConsejos();
+            obtenerConsejos(); // Recargar los consejos después de eliminar un consejo
+            // Si el consejo eliminado estaba en la lista de consejos que el usuario ha dado like, eliminarlo de la lista
+            setLikedConsejos(prevLikedConsejos => prevLikedConsejos.filter(consejoId => consejoId !== id));
         } catch (error) {
             console.error('Error al eliminar el consejo:', error);
         }
@@ -86,15 +93,15 @@ const Consejos = () => {
         }
     };
 
+    // Función para determinar si un consejo tiene like del usuario actual
+    const tieneLike = (id) => likedConsejos.includes(id);
+
     return (
         <>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <h1>Consejos</h1>
                 <button type="button" className="btn btn-primary">Deja un comentario</button>
             </div>
-
-
-
 
             <div>
                 {consejos.map((consejo, index) => (
@@ -109,7 +116,7 @@ const Consejos = () => {
                                     <p>{consejo.likes}</p>
                                 </div>
                                 <div className="btn-group me-2" role="group" aria-label="Second group">
-                                    <button className="btn btn-primary" onClick={() => handleLike(consejo._id.$oid)}>
+                                    <button className="btn btn-primary" onClick={() => handleLike(consejo._id.$oid)} disabled={tieneLike(consejo._id.$oid)}>
                                         <i className="bi bi-hand-thumbs-up-fill"></i>
                                     </button>
                                 </div>
