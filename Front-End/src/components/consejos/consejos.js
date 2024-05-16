@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Consejos = () => {
     const [consejos, setConsejos] = useState([]);
@@ -100,7 +101,7 @@ const Consejos = () => {
         <>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <h1>Consejos</h1>
-                <button type="button" className="btn btn-primary">Deja un comentario</button>
+                <Link to="/home/addconsejos" type="button" className="btn btn-primary">Deja un comentario</Link>
             </div>
 
             <div>
