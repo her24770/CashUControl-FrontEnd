@@ -137,7 +137,6 @@ import {
                 nombre={blg.nombre}
                 descripcion={blg.descripcion}
                 puntos={blg.puntos}
-                
               />
             </Col>
           ))}
