@@ -8,11 +8,6 @@ const navigation = [
     icon: "bi bi-speedometer2",
   },
   {
-    title: "Usuarios",
-    href: "/home/users",
-    icon: "bi bi-people-fill",
-  },
-  {
     title:"Finanzas",
     href:"/home/historyFinances",
     icon:"bi bi-cash-coin"
@@ -32,52 +27,67 @@ const navigation = [
     href:"/home/consejos",
     icon:"bi bi-chat-square-text-fill"
   },
-  {
-    title: "Alert",
-    href: "/home/alerts",
-    icon: "bi bi-bell",
-  },
-  {
-    title: "Badges",
-    href: "/home/badges",
-    icon: "bi bi-patch-check",
-  },
-  {
-    title: "Buttons",
-    href: "/home/buttons",
-    icon: "bi bi-hdd-stack",
-  },
-  {
-    title: "Cards",
-    href: "/home/cards",
-    icon: "bi bi-card-text",
-  },
-   {
-     title: "Grid",
-     href: "/home/grid",
-     icon: "bi bi-columns",
-   },
-  {
-    title: "Table",
-    href: "/home/table",
-    icon: "bi bi-layout-split",
-  },
-   {
-     title: "Forms",
-     href: "/home/forms",
-     icon: "bi bi-textarea-resize",
-   },
-  {
-    title: "Breadcrumbs",
-    href: "/home/breadcrumbs",
-    icon: "bi bi-link",
-  },
-  {
-    title: "About",
-    href: "/home/about",
-    icon: "bi bi-people",
-  }
+  // {
+  //   title: "Alert",
+  //   href: "/home/alerts",
+  //   icon: "bi bi-bell",
+  // },
+  // {
+  //   title: "Badges",
+  //   href: "/home/badges",
+  //   icon: "bi bi-patch-check",
+  // },
+  // {
+  //   title: "Buttons",
+  //   href: "/home/buttons",
+  //   icon: "bi bi-hdd-stack",
+  // },
+  // {
+  //   title: "Cards",
+  //   href: "/home/cards",
+  //   icon: "bi bi-card-text",
+  // },
+  //  {
+  //    title: "Grid",
+  //    href: "/home/grid",
+  //    icon: "bi bi-columns",
+  //  },
+  // {
+  //   title: "Table",
+  //   href: "/home/table",
+  //   icon: "bi bi-layout-split",
+  // },
+  //  {
+  //    title: "Forms",
+  //    href: "/home/forms",
+  //    icon: "bi bi-textarea-resize",
+  //  },
+  // {
+  //   title: "Breadcrumbs",
+  //   href: "/home/breadcrumbs",
+  //   icon: "bi bi-link",
+  // },
+  // {
+  //   title: "About",
+  //   href: "/home/about",
+  //   icon: "bi bi-people",
+  // }
 ];
+
+
+
+
+const role = localStorage.getItem('role');
+
+console.log(role)
+if(role == "ADMIN"){
+  navigation.push({
+    title: "Usuarios",
+    href: "/home/users",
+    icon: "bi bi-people-fill",
+  },);
+}
+ 
 
 const Sidebar = () => {
   const showMobilemenu = () => {

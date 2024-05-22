@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Col, Row } from "reactstrap";
+import moment from 'moment';
 import { Card, CardBody, CardTitle, ListGroup, CardSubtitle, ListGroupItem, Button } from "reactstrap";
 import user1 from "../../assets/images/users/user4.jpg";
 import AhorradorﾠIncansable from "../../assets/images/insignias/AhorradorIncansable.png"
@@ -26,6 +27,15 @@ const Profile = () => {
   const [user, setUser] = useState({});
   const [rewards, setRewards] = useState([]);
   const [totalPoints, setTotalPoints] = useState(0); // Estado para almacenar los puntos totales del usuario
+
+  //cambio de formato de fecha
+  const formatFecha = (fecha) => {
+    const momentFecha = moment(fecha);
+    const dia = momentFecha.format('D');
+    const nombreMes = momentFecha.format('MMMM');
+    const año = momentFecha.format('YYYY');
+    return `${dia} ${nombreMes} del ${año}`;
+};
 
   const config = {
     headers: {
@@ -67,6 +77,7 @@ const Profile = () => {
       // Calcula la suma total de puntos del usuario
       const total = data.reduce((acc, curr) => acc + curr.puntos, 0);
       setTotalPoints(total);
+      console.log(data)
     } catch (error) {
       console.error(error);
     }
@@ -118,6 +129,8 @@ const Profile = () => {
         <Col sm="12"> {/* Utilizando la totalidad del ancho de la columna */}
   <div className="d-flex flex-wrap">
     {rewards.map((recompensa, index) => (
+
+    
       <div className="mr-3 mb-3" style={{ flex: '0 0 auto', marginRight: '10px', marginBottom: '10px' }} key={index}>
         <div className="card" style={{ width: '18rem' }}>
           <img src={images[recompensa.descripcion]} alt={recompensa.descripcion} className="card-img-top rounded-circle" width="100%" />
@@ -125,7 +138,7 @@ const Profile = () => {
             <p className="card-text">
               {recompensa.descripcion}<br />
               <div>Puntos adquiridos: {recompensa.puntos}</div><br />
-              {new Date(recompensa.fecha_otorgamiento).toLocaleString()}
+             {formatFecha(new Date(recompensa.fecha_otorgamiento.$date))}
             </p>
           </div>
         </div>

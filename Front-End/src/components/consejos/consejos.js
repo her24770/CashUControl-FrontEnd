@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 import { Link } from 'react-router-dom';
 
 const Consejos = () => {
@@ -81,18 +82,14 @@ const Consejos = () => {
         }
     };
 
-    const formatDate = (dateString) => {
-        try {
-            const date = new Date(dateString);
-            if (isNaN(date.getTime())) {
-                return 'Fecha inválida';
-            }
-            return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-        } catch (error) {
-            console.error('Error al parsear la fecha:', error);
-            return 'Error de formato de fecha';
-        }
-    };
+    //cambio de formato de fecha
+  const formatFecha = (fecha) => {
+    const momentFecha = moment(fecha);
+    const dia = momentFecha.format('D');
+    const nombreMes = momentFecha.format('MMMM');
+    const año = momentFecha.format('YYYY');
+    return `${dia} ${nombreMes} del ${año}`;
+};
 
     // Función para determinar si un consejo tiene like del usuario actual
     const tieneLike = (id) => likedConsejos.includes(id);
@@ -109,7 +106,7 @@ const Consejos = () => {
                     <div key={index} className="card">
                         <div className="card-body">
                             <h5 className="card-title">Categoria: {consejo.categoria}</h5>
-                            <h6 className="card-subtitle mb-2 text-muted">{formatDate(consejo.fecha)}</h6>
+                            <h6 className="card-subtitle mb-2 text-muted">{formatFecha(new Date(consejo.fecha.$date))}</h6>
                             <p className="card-text">Descripcion: {consejo.descripcion}</p>
 
                             <div className="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">

@@ -1,16 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import moment from 'moment';
 import { Card, CardBody, CardTitle, Button, Form, FormGroup, Label, Input, Table } from "reactstrap";
 
 const Metas = () => {
     const [metas, setMetas] = useState([]);
     const [meta, setMeta] = useState({
         tipo: '',
-        monto: ''
+        monto: '',
+        dateObjetivo:''
     });
     const [isEditing, setIsEditing] = useState(false);
     const [editingMetaId, setEditingMetaId] = useState(null);
+
+    //cambio de formato de fecha
+  const formatFecha = (fecha) => {
+    const momentFecha = moment(fecha);
+    const dia = momentFecha.format('D');
+    const nombreMes = momentFecha.format('MMMM');
+    const año = momentFecha.format('YYYY');
+    return `${dia} ${nombreMes} del ${año}`;
+};
 
     const fetchMetas = async () => {
         try {
@@ -32,6 +43,7 @@ const Metas = () => {
     }, []);
 
     const handleChange = (e) => {
+        console.log(meta.dateObjetivo)
         setMeta({
             ...meta,
             [e.target.name]: e.target.value
@@ -41,11 +53,12 @@ const Metas = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            console.log(meta.dateObjetivo)
             const data = {
                 idUser: localStorage.getItem('id'),
                 tipo: meta.tipo,
                 monto: meta.monto,
-                dateObjetivo: new Date().toISOString()
+                dateObjetivo: meta.dateObjetivo
             };
 
             if (isEditing) {
@@ -64,15 +77,15 @@ const Metas = () => {
                 });
             }
 
-            setMeta({ tipo: '', monto: '' });
+            setMeta({ tipo: '', monto: '', dateObjetivo:'' });
             setIsEditing(false);
             setEditingMetaId(null);
             fetchMetas();
         } catch (error) {
             console.error(error);
             Swal.fire({
-                title: 'Error al guardar la meta',
-                text: 'Por favor, inténtalo de nuevo más tarde',
+                title: 'Formato de fecha debe ser año-mes-día',
+                text: 'Ejemplo: 2024-10-25',
                 icon: 'error',
                 timer: 2000
             });
@@ -133,6 +146,17 @@ const Metas = () => {
                                 required
                             />
                         </FormGroup>
+                        <FormGroup>
+                            <Label for="dateObjetivo">Fecha Objetivo</Label>
+                            <Input
+                                type="text"
+                                id="dateObjetivo"
+                                name="dateObjetivo"
+                                value={meta.dateObjetivo}
+                                onChange={handleChange}
+                                required
+                            />
+                        </FormGroup>
                         <Button type="submit">{isEditing ? 'Actualizar Meta' : 'Agregar Meta'}</Button>
                     </Form>
                 </CardBody>
@@ -150,8 +174,8 @@ const Metas = () => {
                     {metas.map(meta => (
                         <tr key={meta._id['$oid']}>
                             <td>{meta.tipo}</td>
-                            <td>{meta.monto}</td>
-                            <td>{new Date(meta.dateObjetivo).toLocaleDateString()}</td>
+                            <td>Q {meta.monto}.00</td>
+                            <td>{formatFecha(new Date(meta.dateObjetivo.$date))}</td>
                             <td>
                                 <Button color="warning" onClick={() => handleEdit(meta)}>Editar</Button>
                                 <Button color="danger" onClick={() => handleDelete(meta._id['$oid'])}>Eliminar</Button>
