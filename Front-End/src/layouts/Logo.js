@@ -1,10 +1,12 @@
-import { ReactComponent as LogoDark } from "../assets/images/logos/adminpro.svg";
+import React from "react";
 import { Link } from "react-router-dom";
+// Importa la nueva imagen JPEG
+import logoDark from "../assets/images/insignias/logocash.jpeg";
 
 const Logo = () => {
   return (
     <Link to="/">
-      <LogoDark />
+      <img src={logoDark} alt="Logo" style={{ width: "180px", height: "auto" }} />
     </Link>
   );
 };

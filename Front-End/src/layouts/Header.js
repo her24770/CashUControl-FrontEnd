@@ -4,9 +4,7 @@ import {
   Navbar,
   Collapse,
   Nav,
-  //NavItem,
   NavbarBrand,
- // UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
@@ -14,12 +12,13 @@ import {
   Button,
 } from "reactstrap";
 import Logo from "./Logo";
-import { ReactComponent as LogoWhite } from "../assets/images/logos/adminprowhite.svg";
+// Importa la nueva imagen PNG
+import logoWhite from "../assets/images/insignias/AhorradorIncansable.png";
 import user1 from "../assets/images/users/user4.jpg";
 
 const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
 
@@ -32,11 +31,11 @@ const Header = () => {
   };
 
   const logOut = async (e) => {
-    localStorage.setItem('token',"")
-    localStorage.setItem('role', "")
-    localStorage.setItem('id',"")
-    navigate("/")
-  }
+    localStorage.setItem('token', "");
+    localStorage.setItem('role', "");
+    localStorage.setItem('id', "");
+    navigate("/");
+  };
 
   return (
     <Navbar color="white" light expand="md" className="fix-header">
@@ -45,11 +44,11 @@ const Header = () => {
           <Logo />
         </div>
         <NavbarBrand href="/">
-          <LogoWhite className="d-lg-none" />
+          <img src={logoWhite} alt="Logo" className="d-lg-none" />
         </NavbarBrand>
         <Button
           color="primary"
-          className=" d-lg-none"
+          className="d-lg-none"
           onClick={() => showMobilemenu()}
         >
           <i className="bi bi-list"></i>
@@ -96,14 +95,14 @@ const Header = () => {
               alt="profile"
               className="rounded-circle"
               width="30"
-            ></img>
+            />
           </DropdownToggle>
           <DropdownMenu>
             <DropdownItem header>Opciones</DropdownItem>
             <DropdownItem tag={Link} to="/home/profile">My Account</DropdownItem>
             <DropdownItem tag={Link} to="/home/updateUser">Edit Account</DropdownItem>
             <DropdownItem divider />
-            <DropdownItem onClick={(e)=> logOut(e)}>Logout</DropdownItem>
+            <DropdownItem onClick={(e) => logOut(e)}>Logout</DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </Collapse>

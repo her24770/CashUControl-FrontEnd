@@ -11,40 +11,38 @@ import {
 
 const FeedData = [
   {
-    title: "Cras justo odio",
-    icon: "bi bi-bell",
+    title: "HOME",
+    icon: "bi bi-bell " ,
     color: "primary",
-    date: "6 minute ago",
+ 
   },
   {
-    title: "New user registered.",
+    title: "REZLIZA TUS FINANZAS",
     icon: "bi bi-person",
     color: "info",
-    date: "6 minute ago",
+
   },
   {
-    title: "Server #1 overloaded.",
+    title: "OBTEN RECOMPENSAS",
     icon: "bi bi-hdd",
     color: "danger",
-    date: "6 minute ago",
+
   },
   {
-    title: "New order received.",
+    title: "PONTE METAS",
     icon: "bi bi-bag-check",
     color: "success",
-    date: "6 minute ago",
   },
   {
-    title: "Cras justo odio",
+    title: "TE DAREMOS CONJEOS",
     icon: "bi bi-bell",
     color: "dark",
-    date: "6 minute ago",
   },
   {
-    title: "Server #1 overloaded.",
+    title: "CUENTAS TUS PUNTOS DE LAS INSIGNIAS",
     icon: "bi bi-hdd",
     color: "warning",
-    date: "6 minute ago",
+
   },
 ];
 
@@ -52,9 +50,9 @@ const Feeds = () => {
   return (
     <Card>
       <CardBody>
-        <CardTitle tag="h5">Feeds</CardTitle>
+        <CardTitle tag="h5">Las Opciones que Puedes Encontrar.</CardTitle>
         <CardSubtitle className="mb-2 text-muted" tag="h6">
-          Widget you can use
+          
         </CardSubtitle>
         <ListGroup flush className="mt-4">
           {FeedData.map((feed, index) => (
