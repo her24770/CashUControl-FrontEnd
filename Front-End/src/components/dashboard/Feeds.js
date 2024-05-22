@@ -39,7 +39,7 @@ const FeedData = [
     color: "dark",
   },
   {
-    title: "CUENTAS TUS PUNTOS DE LAS INSIGNIAS",
+    title: "CUENTA TUS PUNTOS DE LAS INSIGNIAS",
     icon: "bi bi-hdd",
     color: "warning",
 
