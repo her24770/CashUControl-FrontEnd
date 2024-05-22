@@ -34,7 +34,7 @@ const FeedData = [
     color: "success",
   },
   {
-    title: "TE DAREMOS CONJEOS",
+    title: "TE DAREMOS CONSEJOS",
     icon: "bi bi-bell",
     color: "dark",
   },
