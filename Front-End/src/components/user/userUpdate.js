@@ -37,7 +37,6 @@ const UserUpdate = () => {
             const newPassword1 = document.getElementById('newPassword1').value
             const newPassword2 = document.getElementById('newPassword2').value
             if (newPassword1 === newPassword2) {
-                console.log(data.message)
                 if (data.message === 'Update successfully') {
                     Swal.fire({
                         title: 'Actualizada correctamente',
@@ -73,7 +72,6 @@ const UserUpdate = () => {
     const updateUser = async (e) => {
         e.preventDefault();
         try {
-            console.log(user)
             if(user.name===""||user.surname===""||user.carnet===""){
                 Swal.fire({
                     title: "No puede dejar espacio vacios",
@@ -83,7 +81,6 @@ const UserUpdate = () => {
             }
             else{
                 const { data } = await axios.put(`http://localhost:5000/users/update/${id}`, user);
-                console.log(data)
                 if (data.message === 'Update successfully') {
                     Swal.fire({
                         title: 'Actualizada correctamente',

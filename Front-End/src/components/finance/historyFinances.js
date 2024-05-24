@@ -7,8 +7,6 @@ import moment from 'moment';
 import 'moment/locale/es';
 moment.locale('es');
 
-
-
 const Tables = () => {
     const id = localStorage.getItem('id');
     const [ingresos, setIngresos] = useState([]);
@@ -23,6 +21,7 @@ const Tables = () => {
             console.error(error);
         }
     };
+
     //funcion listar egrsos
     const getEgresos = async () => {
         try {

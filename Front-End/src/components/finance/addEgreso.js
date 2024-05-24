@@ -72,7 +72,7 @@ const AddEgreso = () => {
                 <Col sm="6" lg="6" xl="7" xxl="8" className="mx-auto text-center">
                     <Card>
                         <CardBody>
-                            <CardTitle tag="h5">Agregar Ingreso</CardTitle>
+                            <CardTitle tag="h5">Agregar Egreso</CardTitle>
                             <CardSubtitle className="mb-2 text-muted" tag="h6">Finanzas</CardSubtitle>
                             <Form>
                                 <FormGroup>

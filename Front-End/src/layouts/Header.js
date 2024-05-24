@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import Logo from "./Logo";
 // Importa la nueva imagen PNG
-import logoWhite from "../assets/images/insignias/AhorradorIncansable.png";
+import logoWhite from "../assets/images/insignias/logocash.jpeg";
 import user1 from "../assets/images/users/user4.jpg";
 
 const Header = () => {
