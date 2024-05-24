@@ -34,12 +34,12 @@ const FeedData = [
     color: "success",
   },
   {
-    title: "TE DAREMOS CONJEOS",
+    title: "TE DAREMOS CONSEJOS",
     icon: "bi bi-bell",
     color: "dark",
   },
   {
-    title: "CUENTAS TUS PUNTOS DE LAS INSIGNIAS",
+    title: "CUENTA TUS PUNTOS DE LAS INSIGNIAS",
     icon: "bi bi-hdd",
     color: "warning",
 
