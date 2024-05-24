@@ -48,7 +48,7 @@ const LoginView = () => {
     const register = async (e) => {
       e.preventDefault();  
       try {
-          const {data} = await axios.post('http://localhost:5000/users/register', form);
+          const {data} = await axios.post('http ://localhost:5000/users/register', form);
           if(data.message == 'Add succesfully'){
             window.location.reload()
               Swal.fire({
