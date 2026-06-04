@@ -80,7 +80,7 @@ const listaGraficaEgresos = obtenerEgresosMensuales(egresos);
   const getEgresosList = async () => {
     try {
       const { data } = await axios.post(`http://localhost:5000/egresos/egresosBySemester/${id}`, {
-        year: 2024,
+        year: añoActual,
         semestre: 1
       });
       setEgresos(data)
@@ -96,7 +96,7 @@ const listaGraficaEgresos = obtenerEgresosMensuales(egresos);
   const getIngresosList = async () => {
     try {
       const { data } = await axios.post(`http://localhost:5000/ingresos/listSemestre/${id}`, {
-        year: 2024,
+        year: añoActual,
         semestre: 1
       });
       console.log("ingreso")
