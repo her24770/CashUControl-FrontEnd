@@ -96,8 +96,8 @@ const Consejos = () => {
 
     return (
         <>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <h1>Consejos</h1>
+            <div className="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+                <h1 className="mb-0">Consejos</h1>
                 <Link to="/home/addconsejos" type="button" className="btn btn-primary">Deja un comentario</Link>
             </div>
 

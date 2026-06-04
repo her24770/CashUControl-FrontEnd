@@ -66,7 +66,7 @@ const Starter = () => {
       {/*Sales & Feed***/}
       <Row>
         <Col sm="6" lg="6" xl="7" xxl="8">
-        <img src={logoDark} alt="Logo" style={{ width: "500px", height: "auto" }} />
+        <img src={logoDark} alt="Logo" style={{ width: "100%", maxWidth: "500px", height: "auto" }} />
         </Col>
         <Col sm="6" lg="6" xl="5" xxl="4">
           <Feeds />
@@ -79,9 +79,9 @@ const Starter = () => {
         </Col>
       </Row>
       {/***Blog Cards***/}
-      <Row>
+      <Row className="g-3">
         {BlogData.map((blogItem, index) => (
-          <Col sm="6" lg="6" xl="3" key={index}>
+          <Col xs="12" sm="6" xl="3" key={index}>
             <Blog
               image={blogItem.image}
               title={blogItem.title}

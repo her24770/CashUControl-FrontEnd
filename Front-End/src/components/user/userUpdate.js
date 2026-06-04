@@ -133,7 +133,7 @@ const UserUpdate = () => {
     return (
         <div>
             <Row>
-                <Col sm="6" lg="6" xl="7" xxl="8">
+                <Col xs="12" md="6" xl="7" xxl="8">
                     <Card>
                         <CardBody>
                             <CardTitle tag="h5">Actualizacion de informacion</CardTitle>
@@ -181,7 +181,7 @@ const UserUpdate = () => {
                         </CardBody>
                     </Card>
                 </Col>
-                <Col sm="6" lg="6" xl="5" xxl="4">
+                <Col xs="12" md="6" xl="5" xxl="4">
                     <Card>
                         <CardBody>
                             <CardTitle tag="h5">Actualizacion de contraseña</CardTitle>

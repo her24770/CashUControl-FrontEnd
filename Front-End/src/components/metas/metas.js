@@ -161,7 +161,7 @@ const Metas = () => {
                     </Form>
                 </CardBody>
             </Card>
-            <Table>
+            <Table responsive>
                 <thead>
                     <tr>
                         <th>Tipo</th>
@@ -177,8 +177,8 @@ const Metas = () => {
                             <td>Q {meta.monto}.00</td>
                             <td>{formatFecha(new Date(meta.dateObjetivo.$date))}</td>
                             <td>
-                                <Button color="warning" onClick={() => handleEdit(meta)}>Editar</Button>
-                                <Button color="danger" onClick={() => handleDelete(meta._id['$oid'])}>Eliminar</Button>
+                                <Button color="warning" className="me-1 mb-1" onClick={() => handleEdit(meta)}>Editar</Button>
+                                <Button color="danger" className="mb-1" onClick={() => handleDelete(meta._id['$oid'])}>Eliminar</Button>
                             </td>
                         </tr>
                     ))}

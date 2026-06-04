@@ -91,7 +91,7 @@ const Profile = () => {
   return (
     <div>
       <Row>
-        <Col sm="6" lg="6" xl="7" xxl="8">
+        <Col xs="12" md="6" xl="7" xxl="8">
           <Card>
             <CardBody>
               <CardTitle tag="h5">{user.role}</CardTitle>
@@ -117,7 +117,7 @@ const Profile = () => {
             </CardBody>
           </Card>
         </Col>
-        <Col sm="6" lg="6" xl="5" xxl="4">
+        <Col xs="12" md="6" xl="5" xxl="4">
           <Card>
             <CardBody>
               <CardTitle tag="h5">{user.role}</CardTitle>
@@ -126,25 +126,23 @@ const Profile = () => {
             </CardBody>
           </Card>
         </Col>
-        <Col sm="12"> {/* Utilizando la totalidad del ancho de la columna */}
-  <div className="d-flex flex-wrap">
+        <Col xs="12">
+  <Row className="g-3">
     {rewards.map((recompensa, index) => (
-
-    
-      <div className="mr-3 mb-3" style={{ flex: '0 0 auto', marginRight: '10px', marginBottom: '10px' }} key={index}>
-        <div className="card" style={{ width: '18rem' }}>
-          <img src={images[recompensa.descripcion]} alt={recompensa.descripcion} className="card-img-top rounded-circle" width="100%" />
+      <Col xs="12" sm="6" md="4" lg="3" key={index}>
+        <div className="card h-100">
+          <img src={images[recompensa.descripcion]} alt={recompensa.descripcion} className="card-img-top rounded-circle p-2" style={{ width: '100%' }} />
           <div className="card-body">
             <p className="card-text">
               {recompensa.descripcion}<br />
-              <div>Puntos adquiridos: {recompensa.puntos}</div><br />
-             {formatFecha(new Date(recompensa.fecha_otorgamiento.$date))}
+              <span>Puntos adquiridos: {recompensa.puntos}</span><br />
+              {formatFecha(new Date(recompensa.fecha_otorgamiento.$date))}
             </p>
           </div>
         </div>
-      </div>
+      </Col>
     ))}
-  </div>
+  </Row>
 </Col>
       </Row>
       <div style={{ position: 'fixed', bottom: '10px', right: '10px', backgroundColor: 'white', padding: '10px', borderRadius: '5px', boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.3)' }}>

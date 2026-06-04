@@ -3,8 +3,12 @@ import { Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle, Button } fr
 
 const Blog = ({ image, nombre, descripcion, puntos }) => {
   return (
-    <Card>
-      <CardImg alt="Card image cap" src={image} />
+    <Card className="h-100">
+      <CardImg
+        alt="Card image cap"
+        src={image}
+        style={{ height: "180px", objectFit: "cover" }}
+      />
       <CardBody className="p-4">
         <CardTitle tag="h5">{nombre}</CardTitle>
         <CardSubtitle>{descripcion}</CardSubtitle>

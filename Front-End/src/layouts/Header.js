@@ -38,13 +38,13 @@ const Header = () => {
   };
 
   return (
-    <Navbar color="white" light expand="md" className="fix-header">
+    <Navbar color="white" light expand="lg" className="fix-header">
       <div className="d-flex align-items-center">
         <div className="d-lg-block d-none me-5 pe-3">
           <Logo />
         </div>
         <NavbarBrand href="/">
-          <img src={logoWhite} alt="Logo" className="d-lg-none" />
+          <img src={logoWhite} alt="Logo" className="d-lg-none" style={{ height: "36px", width: "auto" }} />
         </NavbarBrand>
         <Button
           color="primary"

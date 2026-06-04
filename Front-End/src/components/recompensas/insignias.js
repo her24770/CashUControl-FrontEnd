@@ -129,9 +129,9 @@ import {
         <br></br>
         <br></br>
         <h5 className="mb-3" style={{ fontWeight: 'bold' }}>Insignias Vigentes</h5>
-        <Row>
+        <Row className="g-3">
           {BlogData.map((blg, index) => (
-            <Col sm="1000" lg="6" xl="3" key={index}>
+            <Col xs="12" sm="6" lg="6" xl="3" key={index}>
               <Blog
                 image={blg.image}
                 nombre={blg.nombre}
